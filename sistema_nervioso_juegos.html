@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explora el sistema nervioso</title>
+<style>
+:root{--blue:#2457a7;--light:#eef5ff;--ink:#1d2b3a;--green:#21865b;--orange:#e89b32}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fb;color:var(--ink);line-height:1.5}
+header{background:linear-gradient(120deg,#173c78,#347ac2);color:white;padding:28px 18px;text-align:center}
+header h1{margin:0 0 6px;font-size:clamp(1.7rem,5vw,2.6rem)}header p{margin:0}
+nav{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:12px;background:white;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0001}
+nav button,.btn{border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:bold;cursor:pointer}
+nav button{background:#e6eefb;color:#1e4c8c}
+.nav-link{display:inline-block;text-decoration:none;border-radius:9px;padding:10px 14px;background:#e6eefb;color:#1e4c8c;font-weight:bold}.nav-link:hover{background:var(--blue);color:white}
+.btn-link{display:inline-block;text-decoration:none;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:bold}.btn-link:hover{background:#173c78}.small-note{font-size:.9rem;color:#637184;margin-top:16px}nav button.active,nav button:hover{background:var(--blue);color:white}
+main{max-width:1000px;margin:22px auto;padding:0 14px}.panel{display:none;background:white;padding:22px;border-radius:16px;box-shadow:0 4px 18px #18365b12;margin-bottom:20px}.panel.active{display:block}
+h2{color:#204f91;margin-top:0}h3{margin-bottom:8px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.card{border:1px solid #dbe5f2;border-radius:12px;padding:16px;background:#fbfdff}.emoji{font-size:2rem}.tag{display:inline-block;background:#e8f1ff;color:#204f91;padding:3px 9px;border-radius:20px;font-size:.85rem}
+label{display:block;font-weight:bold;margin:12px 0 5px}input[type=text],select{width:100%;padding:11px;border:1px solid #b9c9dc;border-radius:8px;font-size:1rem}
+button:focus,input:focus,select:focus{outline:3px solid #ffcc66;outline-offset:2px}.btn:disabled{opacity:.55;cursor:not-allowed}
+.question{padding:14px;background:#f2f7ff;border-radius:10px;margin:14px 0}.answers{display:grid;gap:8px;margin-top:10px}.answers button{padding:11px;text-align:left;border:1px solid #c7d7eb;background:white;border-radius:8px;cursor:pointer}.answers button:hover{background:#e8f1ff}.answers button.correct{background:#d9f5e5;border-color:#21865b}.answers button.wrong{background:#ffe4e4;border-color:#c33}
+.feedback{font-weight:bold;min-height:28px;margin-top:10px}.score{font-weight:bold;color:#204f91}.match-item{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:10px 0}.match-item select{max-width:360px}.result{padding:12px;border-radius:9px;background:#e8f8ef;margin-top:12px}
+footer{text-align:center;color:#637184;padding:20px;font-size:.9rem}
+#brain{display:block;width:min(100%,330px);margin:8px auto}.part{cursor:pointer;transition:opacity .15s}.part:hover{opacity:.75}
+</style>
+</head>
+<body>
+<header>
+<h1>🧠 Explora el sistema nervioso</h1>
+<p>Aprende, juega y comprueba cuánto sabes sobre sus divisiones.</p>
+</header>
+<nav aria-label="Menú principal">
+<button class="active" data-tab="aprender">Aprender</button>
+<a class="nav-link" href="https://view.genially.com/63a4fe26a225070011d5471f" target="_blank" rel="noopener">Juego Genially 1</a>
+<a class="nav-link" href="https://view.genially.com/60cabc657a0b2e0d81b27121/interactive-content-sistema-nervioso" target="_blank" rel="noopener">Juego Genially 2</a>
+<button data-tab="quiz">Cuestionario</button>
+</nav>
+<main>
+<section class="panel active" id="recursos">
+<h2>🎮 Juegos y cuestionario</h2>
+<p>Abre los juegos interactivos de Genially o completa el cuestionario de 10 preguntas que está integrado en esta página.</p>
+<div class="grid">
+<div class="card"><div class="emoji">👾</div><h3>Videojuego: sistema nervioso</h3><p>Supera misiones y responde preguntas sobre neuronas, sinapsis y divisiones del sistema nervioso.</p><a class="btn-link" href="https://view.genially.com/63a4fe26a225070011d5471f" target="_blank" rel="noopener">Jugar en Genially ↗</a></div>
+<div class="card"><div class="emoji">🧩</div><h3>Sistema nervioso: misiones</h3><p>Actividad interactiva para repasar el sistema nervioso central, periférico, somático y autónomo.</p><a class="btn-link" href="https://view.genially.com/60cabc657a0b2e0d81b27121/interactive-content-sistema-nervioso" target="_blank" rel="noopener">Jugar en Genially ↗</a></div>
+<div class="card"><div class="emoji">📝</div><h3>Cuestionario: 10 preguntas</h3><p>Responde las preguntas sobre el sistema nervioso y sus divisiones. Cada pregunta tiene cuatro opciones y al final verás tu puntuación y las respuestas correctas.</p><button class="btn" type="button" onclick="showQuiz()">Comenzar cuestionario</button></div>
+</div>
+<p class="small-note">El cuestionario se corrige automáticamente en esta página; no necesitas abrir otra plataforma.</p>
+</section>
+<section id="aprender" class="panel">
+<h2>Conoce el sistema nervioso</h2>
+<p>El sistema nervioso recibe información, la procesa y coordina respuestas del cuerpo. Se divide principalmente en sistema nervioso central y sistema nervioso periférico.</p>
+<div class="grid">
+<div class="card"><div class="emoji">🧠</div><h3>Sistema nervioso central (SNC)</h3><p>Está formado por el <b>encéfalo</b> y la <b>médula espinal</b>. Interpreta información y coordina muchas respuestas del organismo.</p><span class="tag">Centro de control</span></div>
+<div class="card"><div class="emoji">🕸️</div><h3>Sistema nervioso periférico (SNP)</h3><p>Incluye nervios y ganglios que conectan el SNC con el resto del cuerpo. Lleva información sensorial y transmite órdenes.</p><span class="tag">Conexión con el cuerpo</span></div>
+<div class="card"><div class="emoji">💪</div><h3>División somática</h3><p>Participa en la sensibilidad y en el control voluntario de los músculos esqueléticos. También interviene en reflejos.</p></div>
+<div class="card"><div class="emoji">❤️</div><h3>División autónoma</h3><p>Regula funciones involuntarias, como el ritmo cardíaco y la digestión. Incluye las divisiones simpática y parasimpática.</p></div>
+<div class="card"><div class="emoji">⚡</div><h3>Simpático</h3><p>Prepara al cuerpo para actuar ante esfuerzo o alerta: suele aumentar el ritmo cardíaco.</p></div>
+<div class="card"><div class="emoji">🌿</div><h3>Parasimpático</h3><p>Favorece el descanso y la digestión; suele ayudar a reducir el ritmo cardíaco cuando el cuerpo está tranquilo.</p></div>
+</div>
+<h3>Explora las partes</h3>
+<p>Pulsa una parte del dibujo para leer una descripción.</p>
+<svg id="brain" viewBox="0 0 320 230" role="img" aria-label="Dibujo interactivo sencillo del encéfalo y la médula espinal">
+<rect x="8" y="8" width="304" height="214" rx="16" fill="#f2f7ff"/>
+<path class="part" data-info="El encéfalo está dentro del cráneo e incluye estructuras como el cerebro, el cerebelo y el tronco encefálico." d="M78 95 C48 83 57 48 83 47 C90 20 123 26 137 39 C156 18 184 31 188 47 C219 40 240 63 226 87 C241 106 218 127 196 120 L111 126 C93 125 76 113 78 95Z" fill="#f3a7a7" stroke="#9b5555" stroke-width="2"/>
+<path class="part" data-info="El cerebro es una parte del encéfalo que participa en pensamiento, memoria, interpretación sensorial y movimientos voluntarios." d="M80 78 Q95 57 111 72 T141 60 T172 66 T205 59 Q225 76 207 94 T177 105 T143 99 T112 110 T80 95Z" fill="#ffd0d0" stroke="#9b5555" stroke-width="1.5"/>
+<ellipse class="part" data-info="El cerebelo ayuda a coordinar los movimientos, el equilibrio y la postura." cx="205" cy="111" rx="22" ry="15" fill="#eaa0c1" stroke="#9b5555" stroke-width="2"/>
+<path class="part" data-info="La médula espinal comunica el encéfalo con muchos nervios del cuerpo y participa en respuestas reflejas." d="M151 121 Q145 143 151 161 L155 190 Q160 199 166 190 L169 157 Q172 139 165 121Z" fill="#f0c65e" stroke="#98751c" stroke-width="2"/>
+<text x="160" y="215" text-anchor="middle" font-size="11" fill="#445">Ilustración esquemática, no anatómica</text>
+</svg>
+<div id="partInfo" class="result" aria-live="polite">Selecciona una parte del dibujo para ver su función.</div>
+</section>
+
+<section id="quiz" class="panel">
+<h2>🎯 Reto de preguntas</h2>
+<p>Responde las 10 preguntas. Cada una tiene cuatro opciones. Al terminar verás tu puntuación y las respuestas correctas.</p>
+<div class="score" id="quizProgress">Pregunta 1 de 8</div>
+<div class="question"><h3 id="quizQuestion"></h3><div class="answers" id="quizAnswers"></div><div class="feedback" id="quizFeedback" aria-live="polite"></div></div>
+<button class="btn" id="nextQuiz" disabled>Siguiente pregunta →</button>
+<div id="quizResult" class="result" hidden></div>
+</section>
+
+<section id="clasificar" class="panel">
+<h2>🧩 Juego: clasifica las funciones</h2>
+<p>Elige la división que corresponde a cada descripción y pulsa “Comprobar”.</p>
+<div id="classifyList"></div>
+<button class="btn" id="checkClassify">Comprobar respuestas</button>
+<button class="btn" id="resetClassify" style="background:#637184">Reiniciar</button>
+<div id="classifyResult" class="result" hidden aria-live="polite"></div>
+</section>
+
+<section id="memoria" class="panel">
+<h2>🃏 Memoria de conceptos</h2>
+<p>Encuentra las parejas: una tarjeta con el concepto y otra con su descripción. Toca dos tarjetas para voltearlas.</p>
+<div class="score" id="memoryStatus">Parejas encontradas: 0 de 6</div>
+<div id="memoryGrid" class="grid"></div>
+<button class="btn" id="restartMemory" style="margin-top:14px">Mezclar y volver a jugar</button>
+<div id="memoryResult" class="result" hidden></div>
+</section>
+</main>
+<footer>
+<p>Actividad educativa · Sistema nervioso y sus divisiones</p>
+<p><strong>Integrantes:</strong></p>
+<p>Delmi Gabriela Ibañez Trinidad</p>
+<p>Elvis Alexander Salmerón Flores</p>
+<p>Dennis Alexander Rosales Torres</p>
+<p>Angely Betsabe Polanco Arevalo</p>
+</footer>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+// Navegación
+function showQuiz(){
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab==='quiz'));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id==='quiz'));
+  document.getElementById('quiz').scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.querySelectorAll('nav button[data-tab]').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x===b));
+  document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===b.dataset.tab));
+}));
+document.querySelectorAll('.part').forEach(p=>p.addEventListener('click',()=>document.querySelector('#partInfo').textContent=p.dataset.info));
+// Cuestionario de 10 preguntas con cuatro opciones cada una
+const questions=[
+{q:'¿Cuál es la función principal del sistema nervioso?',a:['Transportar oxígeno por la sangre','Coordinar y controlar las funciones del cuerpo','Producir los alimentos que necesita el cuerpo','Fortalecer los huesos'],c:1,e:'El sistema nervioso recibe y procesa información y coordina respuestas del cuerpo.'},
+{q:'¿Cuáles son las dos divisiones principales del sistema nervioso?',a:['Sistema muscular y sistema óseo','Sistema digestivo y respiratorio','Sistema nervioso central y periférico','Sistema circulatorio y endocrino'],c:2,e:'Las dos divisiones principales son el sistema nervioso central y el periférico.'},
+{q:'¿Qué estructuras forman el sistema nervioso central?',a:['El encéfalo y la médula espinal','Los nervios y los músculos','El corazón y los pulmones','Los huesos y los tendones'],c:0,e:'El sistema nervioso central está formado por el encéfalo y la médula espinal.'},
+{q:'¿Cuál es una función del sistema nervioso periférico?',a:['Producir glóbulos rojos','Bombear sangre','Formar los huesos','Conectar el sistema nervioso central con el resto del cuerpo'],c:3,e:'Los nervios periféricos llevan información entre el sistema nervioso central y el cuerpo.'},
+{q:'¿Qué parte del encéfalo ayuda a coordinar los movimientos y el equilibrio?',a:['El estómago','El cerebelo','La médula espinal','El corazón'],c:1,e:'El cerebelo participa en la coordinación de movimientos, postura y equilibrio.'},
+{q:'¿Qué división participa en los movimientos voluntarios de los músculos esqueléticos?',a:['La división simpática','La división parasimpática','La división somática','La división digestiva'],c:2,e:'La división somática participa en la sensibilidad y en el control de movimientos voluntarios.'},
+{q:'¿Qué función cumple el sistema nervioso autónomo?',a:['Regular funciones involuntarias, como la digestión y el ritmo cardíaco','Controlar solo los movimientos voluntarios','Formar los huesos','Producir glóbulos rojos'],c:0,e:'El sistema nervioso autónomo regula muchas funciones involuntarias.'},
+{q:'¿Qué sucede generalmente cuando se activa la división simpática?',a:['El cuerpo deja de recibir información','La digestión siempre se acelera','El cuerpo deja de responder a estímulos','El organismo se prepara para actuar ante una situación de alerta'],c:3,e:'La división simpática ayuda a preparar al organismo para responder ante esfuerzo o alerta.'},
+{q:'¿Cuál es una función de la división parasimpática?',a:['Preparar al cuerpo para una emergencia','Favorecer el descanso y la digestión','Controlar exclusivamente los movimientos voluntarios','Detener la comunicación nerviosa'],c:1,e:'La división parasimpática favorece el reposo y la digestión.'},
+{q:'¿Qué función cumple la médula espinal?',a:['Bombear sangre a los órganos','Producir jugos digestivos','Transmitir señales entre el encéfalo y el cuerpo y participar en reflejos','Filtrar los desechos de la sangre'],c:2,e:'La médula espinal conduce señales nerviosas y participa en respuestas reflejas.'}
+];
+let qi=0,qs=0,answered=false,quizFinished=false,selectedAnswers=[];
+function renderQuiz(){
+ answered=false;quizFinished=false;document.querySelector('#quizResult').hidden=true;document.querySelector('#nextQuiz').disabled=true;document.querySelector('#quizFeedback').textContent='';
+ document.querySelector('#quizProgress').textContent=`Pregunta ${qi+1} de ${questions.length}`;
+ const q=questions[qi];document.querySelector('#quizQuestion').textContent=q.q;document.querySelector('#quizAnswers').innerHTML='';
+ q.a.forEach((a,i)=>{const b=document.createElement('button');b.textContent=String.fromCharCode(65+i)+') '+a;b.addEventListener('click',()=>{
+  if(answered)return;answered=true;selectedAnswers[qi]=i;const all=[...document.querySelectorAll('#quizAnswers button')];all[q.c].classList.add('correct');
+  if(i===q.c){qs++;document.querySelector('#quizFeedback').textContent='¡Correcto! '+q.e;document.querySelector('#quizFeedback').style.color='#21865b'}
+  else{b.classList.add('wrong');document.querySelector('#quizFeedback').textContent='Respuesta incorrecta. '+q.e;document.querySelector('#quizFeedback').style.color='#b33'}
+  all.forEach(x=>x.disabled=true);document.querySelector('#nextQuiz').disabled=false;document.querySelector('#nextQuiz').textContent=qi===questions.length-1?'Ver resultado':'Siguiente pregunta →';
+ });document.querySelector('#quizAnswers').appendChild(b);});
+ document.querySelector('#nextQuiz').textContent='Siguiente pregunta →';
+}
+function showQuizResult(){
+ quizFinished=true;document.querySelector('#quizQuestion').textContent='¡Cuestionario terminado!';document.querySelector('#quizAnswers').innerHTML='';document.querySelector('#quizFeedback').textContent='';
+ document.querySelector('#quizProgress').textContent='Resultado final';document.querySelector('#nextQuiz').textContent='Intentar de nuevo';document.querySelector('#nextQuiz').disabled=false;
+ const result=document.querySelector('#quizResult');result.hidden=false;
+ const pct=Math.round(qs/questions.length*100);let title=pct>=90?'¡Excelente trabajo!':pct>=70?'¡Muy bien!':'Sigue practicando';
+ result.innerHTML=`<h3>${title}</h3><p>Tu puntuación: <strong>${qs} de ${questions.length}</strong> (${pct}%).</p><h3>Respuestas correctas</h3><ol>${questions.map(q=>`<li>${q.q}<br><strong>${q.a[q.c]}</strong></li>`).join('')}</ol>`;
+}
+document.querySelector('#nextQuiz').addEventListener('click',()=>{
+ if(quizFinished){qi=0;qs=0;selectedAnswers=[];renderQuiz();return;}if(!answered)return;
+ if(qi<questions.length-1){qi++;renderQuiz();}else showQuizResult();
+});
+renderQuiz();
+// Clasificar
+const tasks=[
+['Recibe e interpreta información del encéfalo y médula espinal.','central'],
+['Conecta el SNC con órganos, piel y músculos.','periferico'],
+['Participa en el movimiento voluntario de los músculos esqueléticos.','somatica'],
+['Regula funciones automáticas como la digestión.','autonoma'],
+['Prepara al organismo para responder ante una situación de alerta.','simpatico'],
+['Favorece el reposo y la digestión.','parasimpatico']
+];
+const opts=[['central','Sistema nervioso central'],['periferico','Sistema nervioso periférico'],['somatica','División somática'],['autonoma','División autónoma'],['simpatico','División simpática'],['parasimpatico','División parasimpática']];
+function buildClassify(){ $('#classifyList').innerHTML='';$('#classifyResult').hidden=true;tasks.forEach((t,i)=>{let div=document.createElement('div');div.className='match-item';let lab=document.createElement('label');lab.textContent=`${i+1}. ${t[0]}`;lab.style.flex='1 1 300px';let sel=document.createElement('select');sel.dataset.answer=t[1];sel.innerHTML='<option value="">Elige una división…</option>'+opts.map(o=>`<option value="${o[0]}">${o[1]}</option>`).join('');div.append(lab,sel);$('#classifyList').appendChild(div);});}
+$('#checkClassify').addEventListener('click',()=>{let sels=$$('#classifyList select'),correct=0;sels.forEach(s=>{if(s.value===s.dataset.answer){correct++;s.style.borderColor='#21865b';s.style.background='#e6f8ee'}else{s.style.borderColor='#c33';s.style.background='#fff0f0'}});$('#classifyResult').hidden=false;$('#classifyResult').textContent=`Resultado: ${correct} de ${tasks.length} correctas.${correct===tasks.length?' ¡Excelente, todas correctas!':' Revisa las respuestas marcadas y vuelve a intentarlo.'}`;});
+$('#resetClassify').addEventListener('click',buildClassify);buildClassify();
+// Memoria
+const pairs=[
+['SNC','Encéfalo y médula espinal'],
+['SNP','Nervios y ganglios'],
+['Somática','Movimiento voluntario y sensibilidad'],
+['Autónoma','Regula funciones involuntarias'],
+['Simpático','Respuesta de alerta'],
+['Parasimpático','Reposo y digestión']
+];let first=null,lock=false,matches=0,turns=0;
+function startMemory(){first=null;lock=false;matches=0;turns=0;$('#memoryResult').hidden=true;$('#memoryStatus').textContent='Parejas encontradas: 0 de 6';let deck=[];pairs.forEach((p,i)=>p.forEach((txt,j)=>deck.push({txt,id:i,kind:j})));deck.sort(()=>Math.random()-.5);$('#memoryGrid').innerHTML='';deck.forEach(card=>{let b=document.createElement('button');b.className='memory-card';b.style.cssText='min-height:90px;border:1px solid #cbd9eb;border-radius:12px;background:#e8f1ff;color:#204f91;font-weight:bold;font-size:1rem;padding:12px;cursor:pointer';b.textContent='❔';b.dataset.id=card.id;b.dataset.txt=card.txt;b.dataset.kind=card.kind;b.addEventListener('click',()=>flip(b));$('#memoryGrid').appendChild(b);});}
+function flip(b){if(lock||b.disabled||b===first)return;b.textContent=b.dataset.txt;b.style.background='white';if(!first){first=b;return;}turns++;if(first.dataset.id===b.dataset.id){first.disabled=true;b.disabled=true;first.style.background=b.style.background='#d9f5e5';matches++;$('#memoryStatus').textContent=`Parejas encontradas: ${matches} de 6 · Intentos: ${turns}`;first=null;if(matches===6){$('#memoryResult').hidden=false;$('#memoryResult').textContent=`¡Ganaste! Encontraste las 6 parejas en ${turns} intentos.`}}else{lock=true;let old=first;first=null;setTimeout(()=>{[old,b].forEach(x=>{x.textContent='❔';x.style.background='#e8f1ff'});lock=false;},850);}}
+$('#restartMemory').addEventListener('click',startMemory);startMemory();
+</script>
+</body>
+</html>
